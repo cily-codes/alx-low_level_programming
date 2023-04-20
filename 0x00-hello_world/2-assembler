@@ -1,0 +1,2 @@
+#!/bin/bash
+BASENAME=$(basename -s .c $CFILE); gcc -S $CFILE -o $BASENAME.s
