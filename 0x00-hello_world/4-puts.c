@@ -2,9 +2,7 @@
 /**
  * main - Entry point
  *
- * Description - This program prints a message to the console.
- *
- * return: 0 (sucess)
+ * Return: 0 (sucess)
  */
 int main(void)
 {
