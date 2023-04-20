@@ -1,7 +1,9 @@
 #include <stdio.h>
 /**
  * main - Entry point
- * Description - 'This program prints a message to the console.'
+ *
+ * Description - This program prints a message to the console.
+ *
  * return: 0 (sucess)
  */
 int main(void)
