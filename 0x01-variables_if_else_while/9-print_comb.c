@@ -13,13 +13,15 @@ int main(void)
 	{
 		for (boy = game; boy < 10; boy++)
 		{
-			putchar(game + '0');
-			putchar(',');
-			putchar(' ');
-			putchar(boy + '0');
-			if (game == 9 && boy == 9)
+			putchar (game + '0');
+			if (game != 9 || boy != 9)
 			{
-				putchar('\n');
+				putchar(',');
+				putchar(' ');
+			}
+			else
+			{
+				putchar ('\n')
 			}
 		}
 	}
