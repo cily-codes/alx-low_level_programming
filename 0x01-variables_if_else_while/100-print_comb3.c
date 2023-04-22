@@ -6,15 +6,15 @@
  */
 int main(void)
 {
-	int charlie, angel;
+	int alx, angel;
 
-	for (charlie = 0; charlie < 9; charlie++)
+	for (alx = 0; alx < 9; alx++)
 	{
-		for (angel = charlie + 1; angel < 10; angel++)
+		for (angel = alx + 1; angel < 10; angel++)
 		{
-			putchar(charlie + '0');
+			putchar(alx + '0');
 			putchar(angel + '0');
-			if (charlie < 8)
+			if (alx < 8)
 			{
 				putchar(',');
 				putchar(' ');
