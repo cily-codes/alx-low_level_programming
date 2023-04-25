@@ -2,13 +2,13 @@
 #include <stdio.h>
 
 /**
- * _putchar - writes the character H to stdout
+ * my_putchar - writes the character H to stdout
  * @H: The character to print
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _putchar(char H)
+int my_putchar(char H)
 {
 	return (write(1, &H, 1));
 }
@@ -27,9 +27,9 @@ int main(void)
 
 	for (T = 0; length > T; T++)
 	{
-		_putchar(words[T]);
+		my_putchar(words[T]);
 	}
 
-	_putchar('\n');
+	my_putchar('\n');
 	return (0);
 }
