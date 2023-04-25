@@ -29,7 +29,7 @@ int main(void)
 
 	for (T = 0; length > T; T++)
 	{
-		my_putchar(words[T]);
+		_putchar(words[T]);
 	}
 
 	return (0);
