@@ -22,6 +22,8 @@ int my_putchar(char H)
 int main(void)
 {
 	char words[] = "_putchar";
+
+	words[length] = '\0';
 	int length = sizeof(words) / sizeof(words[0]);
 	int T;
 
