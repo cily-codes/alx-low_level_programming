@@ -30,6 +30,5 @@ int main(void)
 		my_putchar(words[T]);
 	}
 
-	my_putchar('\n');
 	return (0);
 }
