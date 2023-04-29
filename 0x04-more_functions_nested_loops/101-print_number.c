@@ -5,7 +5,7 @@
  *
  * @n: The integer to print out
  *
- * Return: 0
+ * Return: empty
  */
 void print_number(int n)
 {
