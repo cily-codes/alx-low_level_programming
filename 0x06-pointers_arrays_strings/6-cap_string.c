@@ -11,9 +11,9 @@
 char *cap_string(char *str)
 {
 	int a, b;
-	char seps[] = " \t\n,;.!?\"(){}";
+	char seps[] = "\t\n,; ' ' .!?\"(){}";
 
-	if (str[0] >= 97 && str[0] >= 122)
+	if (str[0] >= 'a' && str[0] <= 'z')
 	{
 		str[0] -= 32;
 	}
@@ -21,7 +21,7 @@ char *cap_string(char *str)
 	{
 		for (b = 0; seps[b] != '\0'; b++)
 		{
-			if (str[a - 1] == seps[b] && str[a] >= 97 && str[a] <= 122)
+			if (str[a - 1] == seps[b] && str[a] >= 'a' && str[a] <= 'z')
 			{
 				str[a] -= 32;
 			}
