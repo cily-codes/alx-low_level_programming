@@ -14,20 +14,17 @@ int main(int argc, char *argv[])
 {
 	int a, product = 1;
 
-	if (argc > 1)
-	{
-		for (a = 1; a < argc; a++)
-		{
-			product *= atoi(argv[a]);
-		}
-		printf("%d\n", product);
-	}
-
-	else if (argc != 3)
+	if (argc != 3)
 	{
 		printf("Error\n");
 		return (1);
 	}
+
+	for (a = 1; a < argc; a++)
+	{
+		product *= atoi(argv[a]);
+	}
+	printf("%d\n", product);
 
 	return (0);
 }
