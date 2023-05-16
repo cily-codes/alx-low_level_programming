@@ -23,19 +23,18 @@ char **strtow(char *str)
 	for (a = 0; a < d; a++)
 	{
 		if (str[a] != ' ' && (a == 0 || str[a - 1] == ' '))
-		{
 			count_words++;
-		}
 	}
 	split = malloc((count_words + 1) * sizeof(char *));
 	if (split == NULL)
 		return (NULL);
+	a = 0;
 	while (a < count_words)
 	{
 		while (str[b] == ' ')
 			b++;
 		c = b;
-		while (str[b] != ' ' && str[b] == '\0')
+		while (str[b] != ' ' && str[b] != '\0')
 			b++;
 		split[a] = malloc((b - c + 1) * sizeof(char));
 		if (split[a] == NULL)
