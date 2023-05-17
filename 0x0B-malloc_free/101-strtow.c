@@ -1,135 +1,128 @@
 #include "main.h"
-#include <string.h>
 #include <stdlib.h>
 
 /**
- * count_words - Counts the number of words in a string.
+ * words_count - function to count the number of words in a string.
  *
- * @str: The string.
+ * @s: String to evaluate.
  *
- * Return: The number of words.
+ * Return: Number of words.
  */
-int count_words(char *str)
+int words_count(char *s)
 {
-	int count = 0;
-	int len = strlen(str);
-	int a;
+	int check = 0;
+	int counter = 0;
+	int track;
 
-	for (a = 0; a < len; a++)
+	for (track = 0; s[track] != '\0'; track++)
 	{
-		if (str[a] != ' ' && (a == 0 || str[a - 1] == ' '))
+		if (s[track] == ' ')
 		{
-			count++;
+			check = 0;
+		}
+		else if (check == 0)
+		{
+			check = 1;
+			counter++;
 		}
 	}
 
-	return (count);
+	return (counter);
 }
 
 /**
- * allocate_memory - Allocates memory for the split array.
+ * allocate_words - Allocates memory for words in the string.
  *
- * @count: The number of words.
+ * @str: String to split.
+ * @counter: Number of words.
  *
- * Return: Pointer to the allocated memory.
+ * Return: Pointer to an array of strings or NULL if it fails.
  */
-char **allocate_memory(int count)
+char **allocate_words(char *str, int counter)
 {
-	char **split;
+	char **x = malloc((counter + 1) * sizeof(char *));
 
-	split = malloc((count + 1) * sizeof(char *));
-	if (split == NULL)
-	{
+	(void) str;
+	if (x == NULL)
 		return (NULL);
-	}
 
-	return (split);
+	return (x);
 }
 
 /**
- * split_string - Splits the string into words
+ * split_words - Splits the string into words and stores them in the array.
  *
- * @str: The string.
- * @split: The split array.
- * @count: The number of words.
+ * @str: String to split.
+ * @x: Array to store the words.
+ *
+ * Return: Array of strings or NULL if it fails.
  */
-void split_string(char *str, char **split, int count)
+char **split_words(char *str, char **x)
 {
-	int a = 0;
-	int b = 0;
-	int c = 0;
+	int a, len, dex, front, back, word_len;
+	char *word;
 
-	while (a < count)
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+
+	dex = 0;
+	front = 0;
+	back = 0;
+	for (a = 0; a <= len; a++)
 	{
-		while (str[b] == ' ')
-			b++;
-
-		c = b;
-		while (str[b] != ' ' && str[b] != '\0')
-			b++;
-
-		split[a] = malloc((b - c + 1) * sizeof(char));
-		if (split[a] == NULL)
+		if (str[a] == ' ' || str[a] == '\0')
 		{
-			while (a > 0)
-				free(split[--a]);
-			free(split);
-			return;
+			if (front < a)
+			{
+				back = a;
+				word_len = back - front;
+				word = malloc((word_len + 1) * sizeof(char));
+				if (word == NULL)
+				{
+					for (a = 0; a < dex; a++)
+						free(x[a]);
+					free(x);
+					return (NULL);
+				}
+				for (a = front; a < back; a++)
+					word[a - front] = str[a];
+				word[word_len] = '\0';
+				x[dex] = word;
+				dex++;
+			}
+			front = a + 1;
 		}
-
-		strncpy(split[a], &str[c], b - c);
-		split[a][b - c] = '\0';
-		a++;
 	}
-
-	split[count] = NULL;
+	x[dex] = NULL;
+	return (x);
 }
 
 /**
  * strtow - Splits a string into words.
  *
- * @str: The string to be splitted.
+ * @str: String to split.
  *
- * Return: Pointer to an array of strings (words), or NULL if it fails.
+ * Return: Pointer to an array of strings or NULL if it fails.
  */
 char **strtow(char *str)
 {
-	char **split;
-	int count;
+	int counter;
+	char **x;
 
 	if (str == NULL || *str == '\0')
-	{
 		return (NULL);
-	}
 
-	count = count_words(str);
-	if (count == 0)
-	{
-		split = malloc(2 * sizeof(char *));
-		if (split == NULL)
-		{
-			return (NULL);
-		}
-
-		split[0] = malloc(sizeof(char));
-		if (split[0] == NULL)
-		{
-			free(split);
-			return (NULL);
-		}
-
-		split[0][0] = '\0';
-		split[1] = NULL;
-		return (split);
-	}
-
-	split = allocate_memory(count);
-	if (split == NULL)
-	{
+	counter = words_count(str);
+	if (counter == 0)
 		return (NULL);
-	}
 
-	split_string(str, split, count);
+	x = allocate_words(str, counter);
+	if (x == NULL)
+		return (NULL);
 
-	return (split);
+	x = split_words(str, x);
+
+	return (x);
 }
+
