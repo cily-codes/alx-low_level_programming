@@ -11,6 +11,7 @@
 int non_digit(char *s)
 {
 	int a = 0;
+
 	while (s[a])
 	{
 		if (s[a] < '0' || s[a] > '9')
@@ -29,6 +30,7 @@ int non_digit(char *s)
 int _strlen(char *s)
 {
 	int a = 0;
+
 	while (s[a] != '\0')
 	{
 		a++;
@@ -75,33 +77,23 @@ int main(int argc, char *argv[])
 		product[i] = 0;
 
 	for (len1 = len1 - 1; len1 >= 0; len1--)
-	{
 		mul1 = num1[len1] - '0';
 		mem = 0;
 		for (len2 = _strlen(num2) - 1; len2 >= 0; len2--)
-		{
 			mul2 = num2[len2] - '0';
 			mem += product[len1 + len2 + 1] + (mul1 * mul2);
 			product[len1 + len2 + 1] = mem % 10;
 			mem /= 10;
-		}
 		if (mem > 0)
 			product[len1 + len2 + 1] += mem;
-	}
-
 	for (i = 0; i < len - 1; i++)
-	{
 		if (product[i])
 			a = 1;
 		if (a)
 			_putchar(product[i] + '0');
-	}
-
 	if (!a)
 		_putchar('0');
-
 	_putchar('\n');
-
 	free(product);
 	return (0);
 }
