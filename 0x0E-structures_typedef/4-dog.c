@@ -37,28 +37,3 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	return (luna);
 }
-/**
- * main - Entry point
- *
- * Return: Always 0
- */
-
-int main(void)
-{
-	dog_t *my_dog = new_dog("Poppy", 3.5, "Bob");
-
-	if (my_dog == NULL)
-	{
-		return (1);
-	}
-
-	printf("Name: %s\n", my_dog->name);
-	printf("Age: %.1f\n", my_dog->age);
-	printf("Owner: %s\n", my_dog->owner);
-
-	free(my_dog->name);
-	free(my_dog->owner);
-	free(my_dog);
-
-	return (0);
-}
