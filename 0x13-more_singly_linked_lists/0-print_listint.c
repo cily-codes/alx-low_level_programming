@@ -13,9 +13,7 @@ size_t print_listint(const listint_t *h)
 
 	for (track_nodes = 0; h != NULL; h = h->next, track_nodes++)
 	{
-		{
-			printf("%d\n", h->n);
-		}
+		printf("%d\n", h->n);
 	}
 	return (track_nodes);
 }
